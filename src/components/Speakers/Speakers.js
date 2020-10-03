@@ -1,13 +1,15 @@
 import React, { useContext } from 'react';
-import SpeakerContext from "./SpeakersContext";
-import SpeakerSearchBar from '../SpeakerSearchBar/SpeakerSearchBar';
+import { useSpeakersContext } from "./SpeakersContext";
+import SpeakerForm from "../SpeakersForm/SpeakersForm";
 
 const Speakers = () => {
-    const speakers = useContext(SpeakerContext);
+    const { speakers } = useSpeakersContext();
     return (
         <div>
-            {speakers.map( ({ imageSrc, name }) => (
-              <img src={`/images/${imageSrc}.png`} alt={name} key={imageSrc}></img>)
+            <SpeakerForm />
+            {speakers.map( ({ imageSrc, name, id }) => (                
+                <img key={id} src={`/images/${imageSrc}.png`} alt={name} key={imageSrc}></img>                
+                )
             )}
         </div>
     );
